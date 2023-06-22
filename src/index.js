@@ -17,7 +17,7 @@ const config = (t) => {
   const extras = t === "default" ? undefined : { acr_values: `tenant:${t}` };
   return {
     client_id: "eOrder_Frontend",
-    authority: "https://sso.appservice.online",
+    authority: "https://sso-qa.charisma.online",
     redirect_uri: `${urlRoot}${AUTH.CALLBACK}`,
     silent_redirect_uri: `${urlRoot}${AUTH.SILENT_CALLBACK}`,
     response_type: "code",
@@ -27,7 +27,10 @@ const config = (t) => {
     loadUserInfo: true,
     triggerAuthFlow: true,
     revokeAccessTokenOnSignout: true,
-    register_uri: `https://sso.appservice.online/?returnUrl=${urlRoot}/register&clientId=eOrder_Frontend`,
+    register_uri: `https://sso-qa.charisma.online/?returnUrl=${urlRoot}/register&clientId=eOrder_Frontend`,
+    service_worker_relative_url: "/OidcServiceWorker.js",
+    service_worker_only: true,
+    refresh_time_before_tokens_expiration_in_second: 50,
     extras,
   };
 };
